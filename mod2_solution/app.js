@@ -9,8 +9,9 @@ angular.module('ShoppingListCheckOff', [])
 function ShoppingListCheckOffService() {
   var service = this;
 
-  var toBuyItems = [ { name: "Item1", quantity: 1 }, { name: "Item2", quantity: 1 },
-                    { name: "Item3", quantity: 2 }, { name: "Item4", quantity: 1 }];
+  var toBuyItems = [ { name: "Item1", quantity: 1 }, { name: "Item2", quantity: 2 },
+                     { name: "Item3", quantity: 3 }, { name: "Item4", quantity: 4 },
+                     { name: "Item5", quantity: 5 } ];
   var boughtItems = [];
 
   service.getToBuyItems = function() {
