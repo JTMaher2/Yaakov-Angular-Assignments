@@ -28,9 +28,9 @@ function ShoppingListCheckOffService() {
   };
 };
 
-ToBuyShoppingController.$inject = ['$scope', 'ShoppingListCheckOffService'];
+ToBuyShoppingController.$inject = ['ShoppingListCheckOffService'];
 
-function ToBuyShoppingController($scope, ShoppingListCheckOffService) {
+function ToBuyShoppingController(ShoppingListCheckOffService) {
   var buyList = this;
 
   buyList.items = ShoppingListCheckOffService.getToBuyItems();
@@ -47,9 +47,9 @@ function ToBuyShoppingController($scope, ShoppingListCheckOffService) {
   }
 }
 
-AlreadyBoughtShoppingController.$inject = ['$scope', 'ShoppingListCheckOffService'];
+AlreadyBoughtShoppingController.$inject = ['ShoppingListCheckOffService'];
 
-function AlreadyBoughtShoppingController($scope, ShoppingListCheckOffService) {
+function AlreadyBoughtShoppingController(ShoppingListCheckOffService) {
   var boughtList = this;
 
   boughtList.items = ShoppingListCheckOffService.getBoughtItems();
