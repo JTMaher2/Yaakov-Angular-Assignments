@@ -13,7 +13,7 @@ function LunchCheckController($scope) {
       var numDishes = 0;
       var validDish = 0;
 
-      for (var c = 0; c < dishes.length; c++) {
+      for (var c = 0; c <= dishes.length; c++) {
         // if current character is not a comma, the dish exists
         if (dishes.charAt(c) !== ',') {
           if (validDish == 0) {
