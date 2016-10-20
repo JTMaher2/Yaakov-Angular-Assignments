@@ -10,11 +10,18 @@ NarrowItDownController.inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var narrowItDown = this;
 
+  narrowItDown.found = [];
+
   narrowItDown.search = function () {
-    MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
-                     .then(function (foundItems) {
-        narrowItDown.found = foundItems;
-    });
+    if (narrowItDown.searchTerm != '') {
+      // valid search query, so proceed with search
+      MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
+                       .then(function (foundItems) {
+          narrowItDown.found = foundItems;
+      });
+    } else { // empty search query, so array must be cleared
+      narrowItDown.found.length = 0;
+    }
   };
 
   narrowItDown.removeItem = function (itemIndex) {
