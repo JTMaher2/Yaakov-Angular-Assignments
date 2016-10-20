@@ -34,6 +34,7 @@ function ToBuyShoppingController(ShoppingListCheckOffService) {
   var buyList = this;
 
   buyList.items = ShoppingListCheckOffService.getToBuyItems();
+  console.log(buyList.items);
 
   buyList.buyItem = function (itemIndex) {
     ShoppingListCheckOffService.buyItem(itemIndex);
