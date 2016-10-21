@@ -11,17 +11,21 @@ function NarrowItDownController(MenuSearchService) {
   var narrowItDown = this;
 
   narrowItDown.found = [];
+  narrowItDown.searchError = false;
 
   narrowItDown.search = function () {
-    if (narrowItDown.searchTerm != '') {
-      // valid search query, so proceed with search
-      MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
-                       .then(function (foundItems) {
-          narrowItDown.found = foundItems;
-      });
-    } else { // empty search query, so array must be cleared
-      narrowItDown.found.length = 0;
-    }
+      if (narrowItDown.searchTerm != '') {
+              MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
+                               .then(function (foundItems) {
+              narrowItDown.found = foundItems;
+
+              if (narrowItDown.found.length == 0)
+                searchError = true;
+          });
+      } else { // invalid search
+        narrowItDown.found.length = 0; // clear array
+        narrowItDown.searchError = true;
+      }
   };
 
   narrowItDown.removeItem = function (itemIndex) {
@@ -40,7 +44,7 @@ function MenuSearchService($http) {
 
         for (var i = 0; i < foundItems.length; i++) {
           // if this item does not contain search term
-          if (foundItems[i].name.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1) {
+          if (foundItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1) {
             foundItems.splice(i, 1); // remove it from foundItems
             i--; // go back 1 index
           }
