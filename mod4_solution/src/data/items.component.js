@@ -1,12 +1,12 @@
 (function () {
 'use strict';
 
-angular.module('Data')
+angular.module('data')
 .component('items', {
   templateUrl: 'src/items.template.html',
   bindings: {
     items: '<'
   }
-)};
+});
 
 })();

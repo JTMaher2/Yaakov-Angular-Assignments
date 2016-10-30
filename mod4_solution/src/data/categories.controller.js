@@ -1,11 +1,11 @@
 (function () {
 'use strict';
 
-angular.module('Data')
+angular.module('data')
 .controller('CategoriesController', CategoriesController);
 
 CategoriesController.$inject = ['$stateParams'];
-function MainShoppingListController(ShoppingListService, items) {
+function CategoriesController(MenuDataService, items) {
   var mainlist = this;
   mainlist.items = items;
 }
