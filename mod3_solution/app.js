@@ -20,7 +20,7 @@ function NarrowItDownController(MenuSearchService) {
               narrowItDown.found = foundItems;
 
               if (narrowItDown.found.length == 0)
-                searchError = true;
+                narrowItDown.searchError = true;
           });
       } else { // invalid search
         narrowItDown.found.length = 0; // clear array
@@ -44,7 +44,7 @@ function MenuSearchService($http) {
 
         for (var i = 0; i < foundItems.length; i++) {
           // if this item does not contain search term
-          if (foundItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1) {
+          if (searchTerm != null && foundItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1) {
             foundItems.splice(i, 1); // remove it from foundItems
             i--; // go back 1 index
           }
