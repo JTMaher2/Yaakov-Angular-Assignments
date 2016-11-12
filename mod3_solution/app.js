@@ -14,9 +14,11 @@ function NarrowItDownController(MenuSearchService) {
   narrowItDown.searchError = false;
 
   narrowItDown.search = function () {
-      if (narrowItDown.searchTerm != '') {
-              MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
-                               .then(function (foundItems) {
+      if (narrowItDown.searchTerm != null && narrowItDown.searchTerm != '') {
+          narrowItDown.searchError = false; // it's a valid search, so do not display error message
+          
+          MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm)
+                           .then(function (foundItems) {
               narrowItDown.found = foundItems;
 
               if (narrowItDown.found.length == 0)
@@ -44,7 +46,7 @@ function MenuSearchService($http) {
 
         for (var i = 0; i < foundItems.length; i++) {
           // if this item does not contain search term
-          if (searchTerm != null && foundItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1) {
+          if (foundItems[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) === -1) {
             foundItems.splice(i, 1); // remove it from foundItems
             i--; // go back 1 index
           }
